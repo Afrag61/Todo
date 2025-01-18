@@ -1,0 +1,78 @@
+{
+  "todos": [
+    {
+      "id": 1737134079200,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call",
+      "isChecked": false,
+      "dueDateTime": "",
+      "todos": []
+    },
+    {
+      "id": 1737134069206,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737134052076,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133999462,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133950856,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133903366,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133857501,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133834067,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1737133712473,
+      "title": "New Todo From Fetch",
+      "description": "This is a new Todo from fetch API call"
+    },
+    {
+      "id": 1,
+      "title": "New Todo",
+      "description": "The Description",
+      "isChecked": false,
+      "createdOn": "8/1/2025 - 05:20 PM",
+      "dueDateTime": "22/4/2025 - 06:35 PM",
+      "history": [
+        {
+          "actionOn": "17/1/2025 - 3:36 PM",
+          "actionedOn": "Title",
+          "oldValue": "My New Todo",
+          "newValue": "New Todo"
+        }
+      ],
+      "todos": [
+        {
+          "id": 2,
+          "title": "New Sub Todo",
+          "description": "The Sub Todo Description",
+          "isChecked": false,
+          "createdOn": "12/1/2025 - 02:50 PM",
+          "dueDateTime": "21/4/2025 - 03:05 PM"
+        }
+      ]
+    }
+  ]
+}
