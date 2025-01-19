@@ -46,6 +46,7 @@ body{
     border-radius: 8px;
     padding: 10px;
     border: 2px solid goldenrod;
+    box-shadow: -15px 15px 50px #000011;
 }
 
 .form-container h1{
