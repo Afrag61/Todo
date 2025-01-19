@@ -1,8 +1,10 @@
 const Header = () => {
   return (
-    <div className="header-container">
+    <header>
+      <div className="header-container">
         <h1>Todo</h1>
-    </div>
+      </div>
+    </header>
   );
 };
 

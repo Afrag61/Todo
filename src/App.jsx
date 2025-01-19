@@ -1,5 +1,5 @@
 import Header from "./components/Header.jsx";
-// import Form from "./components/Form.jsx";
+import Form from "./components/Form.jsx";
 
 const App = () => {
   const testFetch = async () => {
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <>
       <Header />
-      {/* <Form /> */}
+      <Form />
     </>
   )
 };
