@@ -1,5 +1,6 @@
 import Header from "./components/Header.jsx";
 import Form from "./components/Form.jsx";
+import Todos from "./components/Todos.jsx";
 
 const App = () => {
   const testFetch = async () => {
@@ -24,6 +25,7 @@ const App = () => {
     <>
       <Header />
       <Form />
+      <Todos />
     </>
   )
 };

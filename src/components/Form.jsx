@@ -1,10 +1,22 @@
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { isEmpty, minLength, isNotBetween } from "./../validation.js";
 
 const Form = () => {
-  function handleAction(PrevFormState, formData) {
+  const [todo, setTodo] = useState({
+    id: Math.random(),
+    title: "",
+    description: "",
+    isChecked: false,
+    createdOn: "", // The Created On Date
+    dueDateTime: "", // The Due Date
+    history: [], // The History Array of HistoryModel
+    todos: [], // The Array of Sub-Todos
+  });
+
+  async function handleAction(PrevFormState, formData) {
     const title = formData.get("title");
     const description = formData.get("description");
+    const dueDateTime = formData.get("dueDate");
     let errors = [];
 
     if (isEmpty(title)) {
@@ -25,23 +37,50 @@ const Form = () => {
       );
     }
 
+    if (isEmpty(dueDateTime)) {
+      errors.push("You must provide Due Date Time");
+    }
+
     if (errors.length > 0) {
       return {
         errors,
         enteredValues: {
           title,
           description,
+          dueDateTime,
         },
       };
     }
 
-    // TODO: Post values to backend    
+    setTodo((prevTodo) => {
+      return {
+        ...prevTodo,
+        title,
+        description,
+        dueDateTime,
+      };
+    });
+
+    // TODO: Post values to backend
+
+    const response = await fetch(`http://localhost:3000/todos`, {
+      // method: "GET",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        dueDateTime,
+      }),
+    });
 
     if (errors.length === 0) {
-        return {
-          errors: false
-        };
-      }
+      return {
+        errors: false,
+      };
+    }
   }
 
   const [formState, formAction, pending] = useActionState(handleAction, {
@@ -75,6 +114,10 @@ const Form = () => {
             placeholder="Todo description..."
             defaultValue={formState.enteredValues?.description}
           />
+        </div>
+        <div className="date-container">
+          <label htmlFor="dueDate">Due Date</label>
+          <input type="datetime-local" id="dueDate" name="dueDate" defaultValue={formState.enteredValues?.dueDateTime} />
         </div>
         {formState.errors && (
           <ul className="errors">
