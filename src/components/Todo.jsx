@@ -10,7 +10,7 @@ const Todo = () => {
   const [details, setDetails] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleDetails = () => {
+  const showDetails = () => {
     if (details) {
       setDetails(false);
     } else {
@@ -29,13 +29,13 @@ const Todo = () => {
   return (
     <li className="todo-item">
       <div className="todo-pref">
-        <p className="todo-title">Title</p>
+        <p className="todo-title" onClick={showDetails}>Title</p>
         <div className="buttons">
+          <button onClick={showDetails}>
+            <img src={details ? hide : show} alt="show" />
+          </button>
           <button onClick={handleCheck}>
             <img src={isChecked ? checked : noneCheck} alt="" />
-          </button>
-          <button onClick={handleDetails}>
-            <img src={details ? hide : show} alt="show" />
           </button>
           <button className="delete">
             <img src={Delete} alt="" />

@@ -1,5 +1,7 @@
 import { useActionState, useEffect, useState } from "react";
 import { isEmpty, minLength, isNotBetween } from "./../validation.js";
+import Submit from "./Submit.jsx";
+import Reset from "./Reset.jsx";
 
 const Form = () => {
   const [todo, setTodo] = useState({
@@ -127,12 +129,8 @@ const Form = () => {
           </ul>
         )}
         <div className="button-container">
-          <button className="save" type="submit" disabled={pending}>
-            Save
-          </button>
-          <button className="reset" type="reset" disabled={pending}>
-            Reset
-          </button>
+          <Submit />
+          <Reset />
         </div>
       </form>
     </div>
