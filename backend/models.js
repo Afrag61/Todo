@@ -6,7 +6,7 @@ const TodoModel = {
   createdOn: "String", // The Created On Date
   dueDateTime: "String", // The Due Date
   history: "Array", // The History Array of HistoryModel
-  todos: "Array", // The Array of Sub-Todos
+  subTodos: "Array", // The Array of Sub-Todos
 };
 
 const HistoryModel = {

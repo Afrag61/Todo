@@ -1,12 +1,11 @@
+import { useState } from "react";
 import show from "./../assets/show.svg";
 import hide from "./../assets/hide.svg";
 import Delete from "./../assets/delete.svg";
 import checked from "./../assets/checked.svg";
 import noneCheck from "./../assets/noneCheck.svg";
 
-import { useState } from "react";
-
-const Todo = () => {
+const Todo = ({ todo, onTitleClick }) => {
   const [details, setDetails] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -29,13 +28,15 @@ const Todo = () => {
   return (
     <li className="todo-item">
       <div className="todo-pref">
-        <p className="todo-title" onClick={showDetails}>Title</p>
+        <p className="todo-title" onClick={() => onTitleClick(todo.id)}>
+          {todo.title}
+        </p>
         <div className="buttons">
-          <button onClick={showDetails}>
-            <img src={details ? hide : show} alt="show" />
-          </button>
           <button onClick={handleCheck}>
             <img src={isChecked ? checked : noneCheck} alt="" />
+          </button>
+          <button onClick={showDetails}>
+            <img src={details ? hide : show} alt="show" />
           </button>
           <button className="delete">
             <img src={Delete} alt="" />
@@ -44,11 +45,13 @@ const Todo = () => {
       </div>
       {details && (
         <div className="todo-details">
-          <p>description</p>
-          <p>Created on</p>
-          <p>Due Date</p>
-          <p>History</p>
-          <p>sub Todos</p>
+          {todo.description ? <p>{todo.description}</p> : undefined}
+          {todo.createdOn ? (
+            <p>{new Date(todo.createdOn).toLocaleString()}</p>
+          ) : undefined}
+          {todo.dueDateTime ? (
+            <p>{new Date(todo.dueDateTime).toLocaleString()}</p>
+          ) : undefined}
         </div>
       )}
     </li>

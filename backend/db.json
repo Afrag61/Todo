@@ -15,7 +15,7 @@
           "newValue": "New Todo"
         }
       ],
-      "todos": [
+      "subTodos": [
         {
           "id": 2,
           "title": "New Sub Todo",
