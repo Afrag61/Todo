@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect } from 'react'
+import { getTodoById } from '../../backend/helpers';
 
 export const TodoContext = createContext({
     todos: [],
     fetchTodosState: () => {},
     postTodos: () => {},
+    getTodoById: () => {},
 })
 
 const TodosContextProvider = ({children}) => {
@@ -12,8 +14,7 @@ const TodosContextProvider = ({children}) => {
     const fetchTodosState = useEffect(() => {
         const fetchTodosState = async () => {
             const response = await fetch('http://localhost:3000/todos')
-            const data = response.json()
-            const fetchedTodos = await data
+            const fetchedTodos = await response.json()
             setTodos(fetchedTodos)
         }
 
@@ -22,7 +23,6 @@ const TodosContextProvider = ({children}) => {
 
     const postTodos = async ( title, description, dueDateTime) => {
         const response = await fetch(`http://localhost:3000/todos`, {
-              // method: "GET",
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -35,8 +35,15 @@ const TodosContextProvider = ({children}) => {
             });
     }
 
+    const getTodoById = async (id) => {
+        const response = await fetch(`http://localhost:3000/todo/${id}`)
+        const data = await response.json()
+        // console.log("[[][]]",data);
+        return data
+    }
+
     return (
-        <TodoContext.Provider value={{todos, fetchTodosState, postTodos}}>
+        <TodoContext.Provider value={{todos, fetchTodosState, postTodos, getTodoById}}>
             {children}
         </TodoContext.Provider>
     );

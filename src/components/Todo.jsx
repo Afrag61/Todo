@@ -28,7 +28,7 @@ const Todo = ({ todo, onTitleClick }) => {
   return (
     <li className="todo-item">
       <div className="todo-pref">
-        <p className="todo-title" /*onClick={() => onTitleClick(todo.id)}*/>
+        <p className="todo-title" onClick={() => onTitleClick(todo.id)}   >
           {todo.title}
         </p>
         <div className="buttons">
