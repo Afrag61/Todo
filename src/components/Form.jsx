@@ -1,4 +1,5 @@
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState, useContext } from "react";
+import { TodoContext } from "../store/TodosContext.jsx";
 import { isEmpty, minLength, isNotBetween } from "./../validation.js";
 import Submit from "./Submit.jsx";
 import Reset from "./Reset.jsx";
@@ -14,6 +15,8 @@ const Form = () => {
     history: [], // The History Array of HistoryModel
     todos: [], // The Array of Sub-Todos
   });
+
+  const {postTodos} = useContext(TodoContext)
 
   async function handleAction(PrevFormState, formData) {
     const title = formData.get("title");
@@ -65,18 +68,7 @@ const Form = () => {
 
     // TODO: Post values to backend
 
-    const response = await fetch(`http://localhost:3000/todos`, {
-      // method: "GET",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        dueDateTime,
-      }),
-    });
+    postTodos(title, description, dueDateTime)
 
     if (errors.length === 0) {
       return {

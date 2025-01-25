@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { TodoContext } from "../store/TodosContext.jsx";
+import { useState, useContext } from "react";
 import Todo from "./Todo.jsx";
 import TodoDetailsModal from "./TodoDetailsModal.jsx";
 
@@ -8,7 +9,7 @@ const Todos = () => {
     id: undefined,
   });
 
-  let todos = []; // Remove this line and use your new prop
+  const { todos } = useContext(TodoContext)
 
   return (
     <div className="todos-container">

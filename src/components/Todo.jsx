@@ -28,7 +28,7 @@ const Todo = ({ todo, onTitleClick }) => {
   return (
     <li className="todo-item">
       <div className="todo-pref">
-        <p className="todo-title" onClick={() => onTitleClick(todo.id)}>
+        <p className="todo-title" /*onClick={() => onTitleClick(todo.id)}*/>
           {todo.title}
         </p>
         <div className="buttons">
@@ -45,12 +45,12 @@ const Todo = ({ todo, onTitleClick }) => {
       </div>
       {details && (
         <div className="todo-details">
-          {todo.description ? <p>{todo.description}</p> : undefined}
+          {todo.description ? <p>Description: {todo.description}</p> : undefined}
           {todo.createdOn ? (
-            <p>{new Date(todo.createdOn).toLocaleString()}</p>
+            <p>Created on: {new Date(todo.createdOn).toLocaleString()}</p>
           ) : undefined}
           {todo.dueDateTime ? (
-            <p>{new Date(todo.dueDateTime).toLocaleString()}</p>
+            <p>Due Date: {new Date(todo.dueDateTime).toLocaleString()}</p>
           ) : undefined}
         </div>
       )}

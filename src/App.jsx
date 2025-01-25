@@ -1,26 +1,24 @@
-import Header from "./components/Header.jsx";
-import Form from "./components/Form.jsx";
-import Todos from "./components/Todos.jsx";
+import TodosContextProvider from "./store/TodosContext.jsx";
+import Page from "./components/page.jsx";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
 
-  const fetchTodos = async () => {
-    const resp = await fetch("http://localhost:3000/todos");
+  // const fetchTodos = async () => {
+  //   const resp = await fetch("http://localhost:3000/todos");
 
-    return resp.json();
-  };
+  //   return resp.json();
+  // };
 
-  const setTodosState = async () => {
-    const res = await fetchTodos();
+  // const setTodosState = async () => {
+  //   const res = await fetchTodos();
 
-    setTodos(res);
-  };
+  //   setTodos(res);
+  // };
 
-  useEffect(() => {
-    setTodosState();
-  }, []);
+  // useEffect(() => {
+  //   setTodosState();
+  // }, []);
 
   /*const testFetch = async () => {
         const response = await fetch(`http://localhost:3000/todos`, {
@@ -39,11 +37,9 @@ const App = () => {
     };*/
 
   return (
-    <>
-      <Header />
-      <Form />
-      <Todos />
-    </>
+    <TodosContextProvider>
+      <Page />
+    </TodosContextProvider>
   );
 };
 
