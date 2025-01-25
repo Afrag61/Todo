@@ -16,7 +16,7 @@ const Form = () => {
     todos: [], // The Array of Sub-Todos
   });
 
-  const {postTodos} = useContext(TodoContext)
+  const { addTodo } = useContext(TodoContext)
 
   async function handleAction(PrevFormState, formData) {
     const title = formData.get("title");
@@ -68,7 +68,7 @@ const Form = () => {
 
     // TODO: Post values to backend
 
-    postTodos(title, description, dueDateTime)
+    await addTodo(title, description, dueDateTime)
 
     if (errors.length === 0) {
       return {

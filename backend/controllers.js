@@ -31,7 +31,9 @@ router.post("/todos", async (req, res) => {
   const { title, description, isChecked, dueDateTime, subTodos } = req.body;
 
   if (!title || !description) {
-    return res.status(400).json({ error: "Title, description are required." });
+    return res.status(400).json({
+      isSuccess: false, error: "Title, description are required."
+    });
   }
   try {
     const newTodo = await addTodo({
@@ -41,9 +43,14 @@ router.post("/todos", async (req, res) => {
       dueDateTime,
       subTodos,
     });
-    res.status(201).json(newTodo);
+    res.status(201).json({
+      isSuccess: true,
+      todo: newTodo
+    });
   } catch (error) {
-    res.status(500).json({ error: "Error adding todo." });
+    res.status(500).json({
+      isSuccess: false, error: "Error adding todo."
+    });
   }
 });
 

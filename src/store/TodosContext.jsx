@@ -3,36 +3,44 @@ import { getTodoById } from '../../backend/helpers';
 
 export const TodoContext = createContext({
     todos: [],
-    fetchTodosState: () => {},
-    postTodos: () => {},
-    getTodoById: () => {},
+    fetchTodosState: () => { },
+    addTodo: () => { },
+    getTodoById: () => { },
 })
 
-const TodosContextProvider = ({children}) => {
+const TodosContextProvider = ({ children }) => {
     const [todos, setTodos] = useState([]);
 
-    const fetchTodosState = useEffect(() => {
-        const fetchTodosState = async () => {
-            const response = await fetch('http://localhost:3000/todos')
-            const fetchedTodos = await response.json()
-            setTodos(fetchedTodos)
-        }
+    const fetchTodosState = async () => {
+        const response = await fetch('http://localhost:3000/todos')
+        const fetchedTodos = await response.json()
+        setTodos(fetchedTodos)
+    }
 
+    useEffect(() => {
         fetchTodosState()
-    }, [todos])
+    }, [])
 
-    const postTodos = async ( title, description, dueDateTime) => {
+    const addTodo = async (title, description, dueDateTime) => {
         const response = await fetch(`http://localhost:3000/todos`, {
-              method: "POST",
-              headers: {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
+            },
+            body: JSON.stringify({
                 title,
                 description,
                 dueDateTime,
-              }),
-            });
+            }),
+        }).then(async (res) => {
+            if (res.isSuccess) {
+                await fetchTodosState()
+            }
+        }).catch((error) => {
+            console.log('[[][]] The Error:', error);
+        });
+
+        // return response.json();
     }
 
     const getTodoById = async (id) => {
@@ -43,7 +51,7 @@ const TodosContextProvider = ({children}) => {
     }
 
     return (
-        <TodoContext.Provider value={{todos, fetchTodosState, postTodos, getTodoById}}>
+        <TodoContext.Provider value={{ todos, addTodo, fetchTodosState, getTodoById }}>
             {children}
         </TodoContext.Provider>
     );
