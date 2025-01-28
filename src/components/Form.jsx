@@ -16,7 +16,7 @@ const Form = () => {
     todos: [], // The Array of Sub-Todos
   });
 
-  const { addTodo } = useContext(TodoContext)
+  const { addTodo, fetchTodosState } = useContext(TodoContext);
 
   async function handleAction(PrevFormState, formData) {
     const title = formData.get("title");
@@ -68,7 +68,7 @@ const Form = () => {
 
     // TODO: Post values to backend
 
-    await addTodo(title, description, dueDateTime)
+    addTodo(title, description, dueDateTime);
 
     if (errors.length === 0) {
       return {
@@ -111,7 +111,12 @@ const Form = () => {
         </div>
         <div className="date-container">
           <label htmlFor="dueDate">Due Date</label>
-          <input type="datetime-local" id="dueDate" name="dueDate" defaultValue={formState.enteredValues?.dueDateTime} />
+          <input
+            type="datetime-local"
+            id="dueDate"
+            name="dueDate"
+            defaultValue={formState.enteredValues?.dueDateTime}
+          />
         </div>
         {formState.errors && (
           <ul className="errors">
