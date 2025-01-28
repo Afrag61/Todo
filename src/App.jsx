@@ -1,5 +1,5 @@
 import TodosContextProvider from "./store/TodosContext.jsx";
-import Page from "./components/page.jsx";
+import Page from "./components/Page.jsx";
 import { useEffect, useState } from "react";
 
 const App = () => {
