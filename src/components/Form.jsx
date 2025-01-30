@@ -88,7 +88,7 @@ const Form = () => {
       <h1>Enter Todo</h1>
       <form action={formAction}>
         <div className="input-container">
-          <label htmlFor="title">Title</label>
+          {/* <label htmlFor="title">Title</label> */}
           <input
             className={`input`}
             type="text"
@@ -99,7 +99,7 @@ const Form = () => {
           />
         </div>
         <div className="textarea-container">
-          <label htmlFor="description">Description</label>
+          {/* <label htmlFor="description">Description</label> */}
           <textarea
             className={`textarea`}
             type="text"
@@ -110,7 +110,7 @@ const Form = () => {
           />
         </div>
         <div className="date-container">
-          <label htmlFor="dueDate">Due Date</label>
+          {/* <label htmlFor="dueDate">Due Date</label> */}
           <input
             type="datetime-local"
             id="dueDate"
