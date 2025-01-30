@@ -1,6 +1,6 @@
 import { useActionState, useState, useContext } from "react";
 import { TodoContext } from "../store/TodosContext.jsx";
-import { isEmpty, minLength, isNotBetween } from "./../validation.js";
+import { isEmpty, isNotBetween } from "./../validation.js";
 import Submit from "./Submit.jsx";
 import Reset from "./Reset.jsx";
 
@@ -16,7 +16,7 @@ const Form = () => {
     todos: [], // The Array of Sub-Todos
   });
 
-  const { addTodo, fetchTodosState } = useContext(TodoContext);
+  const { addTodo } = useContext(TodoContext);
 
   async function handleAction(PrevFormState, formData) {
     const title = formData.get("title");
@@ -27,16 +27,16 @@ const Form = () => {
     if (isEmpty(title)) {
       errors.push("You must provide todo title.");
     }
-
-    if (minLength(title)) {
-      errors.push("Todo title must be at least five characters long.");
+    
+    if(isNotBetween(title, 5, 30)){
+      errors.push("Todo title must be between 5 and 30 characters long.");
     }
 
     if (isEmpty(description)) {
       errors.push("You must provide todo description.");
     }
 
-    if (isNotBetween(description)) {
+    if (isNotBetween(description, 10, 300)) {
       errors.push(
         "Todo description must be between 10 and 300 characters long."
       );

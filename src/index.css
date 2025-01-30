@@ -398,6 +398,41 @@ body{
     color: white;
 }
 
+.delete-text{
+    text-align: center;
+}
+
+.delete-confirm{
+    display: flex;
+    align-self: center;
+    gap: 50px;
+}
+
+.delete-confirm button{
+    width: 80px;
+    height: 30px;
+    font-size: 1rem;
+    border: 1px solid goldenrod;
+    border-radius: 4px;
+    background-color: transparent;
+    color: goldenrod;
+    font-weight: bold;
+}
+
+.delete-yes:hover{
+    cursor: pointer;
+    background-color: #e20000;
+    color: white;
+    border-color: #e20000;
+}
+
+.delete-no:hover{
+    cursor: pointer;
+    background-color: #00ac00;
+    color: white;
+    border-color: #00ac00;
+}
+
 @media (max-width: 500px) {
     .form-container{
         width: 90%;

@@ -1,5 +1,5 @@
 import { TodoContext } from "../store/TodosContext.jsx";
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import Todo from "./Todo.jsx";
 import TodoDetailsModal from "./TodoDetailsModal.jsx";
 
@@ -8,8 +8,6 @@ const Todos = () => {
     isOpen: false,
     id: undefined,
   });
-  // const [todoId, setTodoId] = useState(undefined);
-  const modalRef = useRef();
 
   const { todos } = useContext(TodoContext);
 
@@ -22,8 +20,6 @@ const Todos = () => {
             key={`${todo.id}-${todo.title}`}
             todo={todo}
             onTitleClick={(id) => {
-              // setTodoId(id);
-              // if (modalRef.current) modalRef.current.showModal();
               setModalState({
                 isOpen: true,
                 id,
@@ -32,7 +28,6 @@ const Todos = () => {
           />
         ))}
       </ul>
-      {/* <TodoDetailsModal ref={modalRef} id={todoId} /> */}
       {modalSate.isOpen && (
         <TodoDetailsModal
           id={modalSate.id}

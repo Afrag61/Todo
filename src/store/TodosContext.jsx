@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from "react";
-import { getTodoById } from "../../backend/helpers";
+// import { getTodoById, todoToggleCheck } from "../../backend/helpers";
 
 export const TodoContext = createContext({
   todos: [],
   fetchTodosState: () => {},
   addTodo: () => {},
   getTodoById: () => {},
+  toggleCheckTodo: () => {},
+  deleteTodo: () => {},
 });
 
 const TodosContextProvider = ({ children }) => {
@@ -54,9 +56,39 @@ const TodosContextProvider = ({ children }) => {
     return data;
   };
 
+  const toggleCheckTodo = async (id) => {
+    const response = await fetch(`http://192.168.1.3:3000/todo/${id}/toggle-check`, {
+      method: "PATCH"
+    }).then((res) => {
+      res.json().then(async (r) => {
+        if (r.isSuccess) {
+          await fetchTodosState();
+        }
+      });
+    })
+    .catch((error) => {
+      console.log("[[][]] The Error:", error);
+    });
+  }
+
+  const deleteTodo = (id) => {
+    const response = fetch(`http://192.168.1.3:3000/todo/${id}`,{
+      method: "DELETE"
+    }).then((res) => {
+      res.json().then(async (r) => {
+        if (r.isSuccess) {
+          await fetchTodosState();
+        }
+      });
+    })
+    .catch((error) => {
+      console.log("[[][]] The Error:", error);
+    });
+  }
+
   return (
     <TodoContext.Provider
-      value={{ todos, addTodo, fetchTodosState, getTodoById }}
+      value={{ todos, addTodo, fetchTodosState, getTodoById, toggleCheckTodo, deleteTodo }}
     >
       {children}
     </TodoContext.Provider>
