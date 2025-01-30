@@ -12,7 +12,7 @@ const Todo = ({ todo, onTitleClick }) => {
   const [details, setDetails] = useState(false);
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false)
 
-  const { toggleCheckTodo } = useContext(TodoContext);
+  const { toggleCheckTodo, setAnyModalIsOpen } = useContext(TodoContext);
 
   const showDetails = () => {
     if (details) {
@@ -26,13 +26,19 @@ const Todo = ({ todo, onTitleClick }) => {
     toggleCheckTodo(todo.id);
   };
 
-  const handleDeleteTodo = () => {
+  const handleOpenDeleteModal = () => {
+    setAnyModalIsOpen(true)
     setDeleteModalIsVisible(true)
   };
 
+  const handleCloseDeleteModal = () => {
+    setAnyModalIsOpen(false)
+    setDeleteModalIsVisible(false)
+  }
+
   return (
     <>
-      {deleteModalIsVisible && <DeleteModal id={todo.id} title={todo.title} setIsVisible={setDeleteModalIsVisible}/>}
+      {deleteModalIsVisible && <DeleteModal id={todo.id} title={todo.title} closeDeleteModal={handleCloseDeleteModal}/>}
       <li className="todo-item">
         <div className="todo-pref">
           <p className="todo-title" onClick={() => onTitleClick(todo.id)}>
@@ -45,7 +51,7 @@ const Todo = ({ todo, onTitleClick }) => {
             <button onClick={showDetails}>
               <img src={details ? hide : show} alt="show" />
             </button>
-            <button className="delete" onClick={handleDeleteTodo}>
+            <button className="delete" onClick={handleOpenDeleteModal}>
               <img src={Delete} alt="Delete" />
             </button>
           </div>

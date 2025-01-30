@@ -9,29 +9,39 @@ const Todos = () => {
     id: undefined,
   });
 
-  const { todos } = useContext(TodoContext);
+  const { todos, anyModalIsOpen, setAnyModalIsOpen } = useContext(TodoContext);
+
+  const handleOpenModal = (id) => {
+    setAnyModalIsOpen(true)
+    setModalState({
+      isOpen: true,
+      id,
+    });
+  }
+
+  const handleCloseModal = () => {
+    setAnyModalIsOpen(false)
+    setModalState({ isOpen: false })
+  }
 
   return (
-    <div className="todos-container">
+    <div className="todos-container" style={{
+      backdropFilter: anyModalIsOpen ? "none" : "blur(10px)"
+    }}>
       <h1 className="todos-header">Todos</h1>
       <ul className="todos-list">
         {todos.map((todo) => (
           <Todo
             key={`${todo.id}-${todo.title}`}
             todo={todo}
-            onTitleClick={(id) => {
-              setModalState({
-                isOpen: true,
-                id,
-              });
-            }}
+            onTitleClick={(id) => handleOpenModal(id)}
           />
         ))}
       </ul>
       {modalSate.isOpen && (
         <TodoDetailsModal
           id={modalSate.id}
-          onClose={() => setModalState({ isOpen: false })}
+          onClose={handleCloseModal}
         />
       )}
     </div>

@@ -1,14 +1,15 @@
 *{
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: monospace;
 }
 
 html{
+    background-image: url(./assets/background.jpg);
     width: 100%;
     /* height: 100%; */
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     background-color: #000022;
-    color: goldenrod;
+    color: #006fee;
     font-size: 16px;
 }
 
@@ -37,15 +38,16 @@ body{
 }
 
 .form-container{
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     justify-self: center;
     align-items: center;
-    background-color: #cacaca;
+    background-color: #0000002f;
     width: 50%;
     border-radius: 8px;
     padding: 10px;
-    border: 2px solid goldenrod;
+    border: 1px solid #006fee;
     box-shadow: -15px 15px 50px #000011;
     margin-bottom: 100px;
     
@@ -58,7 +60,7 @@ body{
     width: 100%;
     margin: 0 0 20px 0;
     padding: 10px 0 20px 0;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #006fee;
 }
 
 .form-container form{
@@ -79,25 +81,25 @@ body{
 .input-container label{
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000022;
+    color: #006fee;
 }
 
 .input{
     border: 0;
-    border-bottom: 2px solid #000022;
+    color: #006fee;
     outline: none;
-    height: 30px;
+    height: 40px;
     font-weight: bold;
     font-size: 1rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 4px;
     padding: 0 8px;
-    background-color: #e4e4e4;
+    border: 2px solid #05050586;
+    background-color: #05050548;
 }
 
 .input:focus{
-    border-color: gold;
-    /* background-color: #cccccc; */
+    border: 2px solid #006fee;
+    background-color: #05050586;
 }
 
 .textarea-container{
@@ -117,22 +119,22 @@ body{
 
 .textarea{
     border: 0;
-    border-bottom: 2px solid #000022;
+    border-radius: 4px;
+    border: 2px solid #05050586;
+    background-color: #05050548;
+    color: #006fee;
     outline: none;
     height: 30px;
     font-weight: bold;
     font-size: 1rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     padding: 0 8px;
-    background-color: #e4e4e4;
     resize: none;
     height: 50px;
 }
 
 .textarea:focus{
-    border-color: gold;
-    /* background-color: #cccccc; */
+    border: 2px solid #006fee;
+    background-color: #05050586;
 }
 
 .date-container{
@@ -150,20 +152,20 @@ body{
 }
 
 .date-container input{
-    border: 0;
-    border-bottom: 2px solid #000022;
+    border-radius: 4px;
+    border: 2px solid #05050586;
+    background-color: #05050548;
+    color: #006fee;
     outline: none;
-    height: 30px;
+    height: 50px;
     font-weight: bold;
     font-size: 1rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     padding: 0 8px;
-    background-color: #e4e4e4;
 }
 
 .date-container input:focus{
-    border-color: gold;
+    border: 2px solid #006fee;
+    background-color: #05050586;
 }
 
 .button-container{
@@ -179,16 +181,17 @@ body{
     font-weight: bold;
     border: 0;
     border-radius: 5px;
-    color: #000022;
+    color: #006fee;
 }
 
 .save{
-    background-color: goldenrod;
+    background-color: transparent;
 }
 
 .save:hover{
     cursor: pointer;
-    background-color: gold;
+    background-color: #a200ff;
+    color: white;
 }
 
 .reset{
@@ -211,7 +214,7 @@ body{
 .errors li{
     list-style: inside square;
     margin: 2px;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #e20000;
 }
 
@@ -224,11 +227,11 @@ body{
     justify-self: center;
     flex-flow: column;
     align-items: center;
-    background-color: #cacaca;
+    background-color: #0000002f;
     width: 70%;
     border-radius: 8px;
     padding: 10px;
-    border: 2px solid goldenrod;
+    border: 1px solid #006fee;
     box-shadow: -15px 15px 50px #000011;
 }
 
@@ -239,7 +242,7 @@ body{
     font-size: 2.5rem;
     margin: 0;
     padding: 10px 0 20px 0;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #006fee;
     margin-bottom: 20px;
 }
 
@@ -254,7 +257,7 @@ body{
 }
 
 .todo-item{
-    color: black;
+    color: #006fee;
     display: flex;
     flex-direction: column;
     padding-left: 10px;
@@ -270,7 +273,7 @@ body{
 .todo-title{
     margin: 0;
     font-size: 1.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .todo-title:hover{
@@ -300,14 +303,15 @@ body{
 }
 
 .todo-details p{
-    color: #000022;
-    border-bottom: 1px dashed black;
+    color: #006fee;
+    border-bottom: 1px dashed #a200ff;
     padding-top: 32px;
     margin: 0;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .backdrop{
+    backdrop-filter: blur(10px);
     position: fixed;
     display: flex;
     justify-content: center;
@@ -320,12 +324,13 @@ body{
 }
 
 .modal {
+    /* backdrop-filter: blur(10px); */
     display: flex;
     flex-direction: column;
     width: 50%;
-    border: 2px solid gold;
+    border: 1px solid #006fee;
     border-radius: 8px;
-    background-color: #000011;
+    background-color: transparent;
     padding: 10px;
 }
 
@@ -334,7 +339,7 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid gold;
+    border-bottom: 1px solid #006fee;
 }
 
 .modal-header h1 {
@@ -357,7 +362,7 @@ body{
 
 .modal p{
     font-size: normal;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .modal-buttons{
@@ -376,18 +381,20 @@ body{
 .modal-buttons .edit{
     border: 0;
     border-radius: 4px;
-    background-color: goldenrod;
+    background-color: transparent;
+    color: #006fee;
 }
 
 .modal-buttons .edit:hover{
-    background-color: gold;
+    background-color: #a200ff;
+    color: white;
     cursor: pointer;
 }
 
 .modal-buttons .delete{
-    border: 2px solid goldenrod;
+    border: 0;
     border-radius: 4px;
-    color: goldenrod;
+    color: #006fee;
     background-color: transparent;
 }
 
@@ -400,6 +407,12 @@ body{
 
 .delete-text{
     text-align: center;
+    font-weight: bold;
+}
+
+.todo-delete{
+    text-align: center;
+    margin-top: 0;
 }
 
 .delete-confirm{
@@ -412,10 +425,10 @@ body{
     width: 80px;
     height: 30px;
     font-size: 1rem;
-    border: 1px solid goldenrod;
+    border: 2px solid #006fee;
     border-radius: 4px;
     background-color: transparent;
-    color: goldenrod;
+    color: #006fee;
     font-weight: bold;
 }
 

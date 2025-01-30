@@ -4,6 +4,8 @@ import { createContext, useState, useEffect } from "react";
 export const TodoContext = createContext({
   todos: [],
   fetchTodosState: () => {},
+  anyModalIsOpen: false,
+  setAnyModalIsOpen: () => {},
   addTodo: () => {},
   getTodoById: () => {},
   toggleCheckTodo: () => {},
@@ -12,6 +14,7 @@ export const TodoContext = createContext({
 
 const TodosContextProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [anyModalIsOpen, setAnyModalIsOpen] = useState(false)
 
   const fetchTodosState = async () => {
     const response = await fetch("http://192.168.1.3:3000/todos");
@@ -88,7 +91,7 @@ const TodosContextProvider = ({ children }) => {
 
   return (
     <TodoContext.Provider
-      value={{ todos, addTodo, fetchTodosState, getTodoById, toggleCheckTodo, deleteTodo }}
+      value={{ todos, addTodo, fetchTodosState, getTodoById, toggleCheckTodo, deleteTodo, anyModalIsOpen, setAnyModalIsOpen }}
     >
       {children}
     </TodoContext.Provider>

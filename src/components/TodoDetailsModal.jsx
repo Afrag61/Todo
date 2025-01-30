@@ -6,7 +6,7 @@ import DeleteModal from "./DeleteModal.jsx";
 const TodoDetailsModal = ({ id, onClose }) => {
   const [todoDetails, setTodoDetails] = useState(undefined);
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false)
-  const { getTodoById } = useContext(TodoContext);
+  const { getTodoById, setAnyModalIsOpen } = useContext(TodoContext);
 
   useEffect(() => {
     const getTodo = async (id) => {
@@ -18,6 +18,7 @@ const TodoDetailsModal = ({ id, onClose }) => {
   }, [id]);
 
   const handleDelete = () => {
+    setAnyModalIsOpen(true)
     setDeleteModalIsVisible(true)
   }
 
@@ -41,7 +42,7 @@ const TodoDetailsModal = ({ id, onClose }) => {
           <button className="delete" onClick={handleDelete}>Delete</button>
         </div>
       </div>
-      {deleteModalIsVisible && <DeleteModal id={id} onClose={onClose} setIsVisible={setDeleteModalIsVisible} title={todoDetails?.title} />}
+      {deleteModalIsVisible && <DeleteModal id={id} closeDetailsModal={onClose} closeDeleteModal={setDeleteModalIsVisible} title={todoDetails?.title} />}
     </div>
   );
 };
