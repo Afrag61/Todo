@@ -14,12 +14,14 @@ export const TodoContext = createContext({
 
 const TodosContextProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  const [anyModalIsOpen, setAnyModalIsOpen] = useState(false)
+  const [anyModalIsOpen, setAnyModalIsOpen] = useState(false);
 
   const fetchTodosState = async () => {
-    const response = await fetch("https://nwwbs8ll-3000.uks1.devtunnels.ms/todos");
+    const response = await fetch("http://localhost:3000/todos");
     const fetchedTodos = await response.json();
-    setTodos(fetchedTodos);
+    if (fetchedTodos.isSuccess) {
+      setTodos(fetchedTodos.todos);
+    }
   };
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const TodosContextProvider = ({ children }) => {
   }, []);
 
   const addTodo = (title, description, dueDateTime) => {
-    const response = fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todos`, {
+    const response = fetch("http://localhost:3000/todos/add-todo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,45 +55,64 @@ const TodosContextProvider = ({ children }) => {
   };
 
   const getTodoById = async (id) => {
-    const response = await fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}`);
+    const response = await fetch(`http://localhost:3000/todos/${id}`);
     const data = await response.json();
-    // console.log("[[][]]",data);
-    return data;
+    if (data.isSuccess) {
+      return data.todo;
+    } else {
+      return {};
+    }
   };
 
   const toggleCheckTodo = async (id) => {
-    const response = await fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}/toggle-check`, {
-      method: "PATCH"
-    }).then((res) => {
-      res.json().then(async (r) => {
-        if (r.isSuccess) {
-          await fetchTodosState();
-        }
+    const response = await fetch(
+      `http://localhost:3000/todos/${id}/toggle-check`,
+      {
+        method: "PATCH",
+      }
+    )
+      .then((res) => {
+        res.json().then(async (r) => {
+          if (r.isSuccess) {
+            await fetchTodosState();
+          }
+        });
+      })
+      .catch((error) => {
+        console.log("[[][]] The Error:", error);
       });
-    })
-    .catch((error) => {
-      console.log("[[][]] The Error:", error);
-    });
-  }
+  };
 
-  const deleteTodo = (id) => {
-    const response = fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}`,{
-      method: "DELETE"
-    }).then((res) => {
-      res.json().then(async (r) => {
-        if (r.isSuccess) {
-          await fetchTodosState();
-        }
-      });
+  const deleteTodo = async (id) => {
+    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: "DELETE",
     })
-    .catch((error) => {
-      console.log("[[][]] The Error:", error);
-    });
-  }
+      .then((res) => {
+        res.json().then(async (r) => {
+          if (r.isSuccess) {
+            await fetchTodosState();
+          }
+        });
+      })
+      .catch((error) => {
+        console.log("[[][]] The Error:", error);
+      });
+  };
+
+  // TODO: create addSubTodo api function
 
   return (
     <TodoContext.Provider
-      value={{ todos, addTodo, fetchTodosState, getTodoById, toggleCheckTodo, deleteTodo, anyModalIsOpen, setAnyModalIsOpen }}
+      value={{
+        todos,
+        addTodo,
+        fetchTodosState,
+        getTodoById,
+        toggleCheckTodo,
+        deleteTodo,
+        anyModalIsOpen,
+        setAnyModalIsOpen,
+      }}
     >
       {children}
     </TodoContext.Provider>
