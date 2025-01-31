@@ -17,7 +17,7 @@ const TodosContextProvider = ({ children }) => {
   const [anyModalIsOpen, setAnyModalIsOpen] = useState(false)
 
   const fetchTodosState = async () => {
-    const response = await fetch("http://192.168.1.3:3000/todos");
+    const response = await fetch("https://nwwbs8ll-3000.uks1.devtunnels.ms/todos");
     const fetchedTodos = await response.json();
     setTodos(fetchedTodos);
   };
@@ -27,7 +27,7 @@ const TodosContextProvider = ({ children }) => {
   }, []);
 
   const addTodo = (title, description, dueDateTime) => {
-    const response = fetch(`http://192.168.1.3:3000/todos`, {
+    const response = fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,14 +53,14 @@ const TodosContextProvider = ({ children }) => {
   };
 
   const getTodoById = async (id) => {
-    const response = await fetch(`http://192.168.1.3:3000/todo/${id}`);
+    const response = await fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}`);
     const data = await response.json();
     // console.log("[[][]]",data);
     return data;
   };
 
   const toggleCheckTodo = async (id) => {
-    const response = await fetch(`http://192.168.1.3:3000/todo/${id}/toggle-check`, {
+    const response = await fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}/toggle-check`, {
       method: "PATCH"
     }).then((res) => {
       res.json().then(async (r) => {
@@ -75,7 +75,7 @@ const TodosContextProvider = ({ children }) => {
   }
 
   const deleteTodo = (id) => {
-    const response = fetch(`http://192.168.1.3:3000/todo/${id}`,{
+    const response = fetch(`https://nwwbs8ll-3000.uks1.devtunnels.ms/todo/${id}`,{
       method: "DELETE"
     }).then((res) => {
       res.json().then(async (r) => {
